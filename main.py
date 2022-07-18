@@ -129,7 +129,7 @@ sql = "SELECT hexagram,iching FROM answers WHERE binary =?"
 p = (tossA6['b']+tossA5['b']+tossA4['b']+tossA3['b']+tossA2['b']+tossA1['b'])
 answer1 = cursor.execute(sql,(p,)).fetchall()
 
-p = int(tossB6['b']+tossB5['b']+tossB4['b']+tossB3['b']+tossB2['b']+tossB1['b'])
+p = (tossB6['b']+tossB5['b']+tossB4['b']+tossB3['b']+tossB2['b']+tossB1['b'])
 answer2 = cursor.execute(sql,(p,)).fetchall()
 
 print(answer1[0]+ answer2[0])
