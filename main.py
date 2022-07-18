@@ -3,6 +3,9 @@
 # Heads is True - Value of three to any coins that are heads 
 # Tails is False - Value of two to any coins that are tails. 
 
+# https://aleadeum.com/2013/07/12/the-i-ching-random-numbers-and-why-you-are-doing-it-wrong/
+
+
 import random
 import sqlite3
 
@@ -89,10 +92,7 @@ def flipCoin():
 
 def toss():
     theresult={"l":"","b":""}
-    coin1 = flipCoin()
-    coin2 = flipCoin()
-    coin3 = flipCoin()
-    result = coin1+coin2+coin3
+    result = flipCoin()+flipCoin()+flipCoin()
     if result in (6,8):
        theresult['l'] = "-------"
        theresult['b'] = "1"
@@ -101,20 +101,21 @@ def toss():
         theresult['b'] = "2"
     return theresult
 
-for i in range (0,6):
-    tossA1 = toss()
-    tossA2 = toss()
-    tossA3 = toss()
-    tossA4 = toss()
-    tossA5 = toss()
-    tossA6 = toss()
+# for i in range (0,6):
+    print(i)
+tossA1 = toss()
+tossA2 = toss()
+tossA3 = toss()
+tossA4 = toss()
+tossA5 = toss()
+tossA6 = toss()
 
-    tossB1 = toss()
-    tossB2 = toss()
-    tossB3 = toss()
-    tossB4 = toss()
-    tossB5 = toss()
-    tossB6 = toss()
+tossB1 = toss()
+tossB2 = toss()
+tossB3 = toss()
+tossB4 = toss()
+tossB5 = toss()
+tossB6 = toss()
 
 print ('Your I Ching Hexagram Results' + '\n\n' +       
        tossA6['l'] + ' | ' + tossB6['l'] +'\n' +
