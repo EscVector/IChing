@@ -9,10 +9,10 @@
 # 9 Converts to Broken Line for Future
 # 6 Converts to Unbroken Line for Future
 # Hexagram binary representation in 1 and 2 for excel compatibility 
-#
 
 # https://aleadeum.com/2013/07/12/the-i-ching-random-numbers-and-why-you-are-doing-it-wrong/
 # https://divination.com/how-to-consult-the-i-ching/
+# https://divination.com/iching/lookup/1-2/
 
 import random
 import sqlite3
