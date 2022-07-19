@@ -8,6 +8,7 @@
 
 import random
 import sqlite3
+from unittest import registerResult
 
 connection = sqlite3.connect("IChing.db")
 cursor = connection.cursor()
@@ -91,18 +92,36 @@ def flipCoin():
         return 2
 
 def toss():
-    theresult={"l":"","b":""}
+    theresult={"l":"","b":"0","f":"0"}
     result = flipCoin()+flipCoin()+flipCoin()
-    if result in (6,8):
+    print(result)
+    if result ==6:
+       theresult['l'] = "---x---"
+       theresult['b'] = "2"
+       theresult['f'] = "1"
+    if result ==7: 
        theresult['l'] = "-------"
        theresult['b'] = "1"
-    else: 
-        theresult['l'] = "--- ---"
-        theresult['b'] = "2"
+       theresult['f'] = "1"
+    if result ==8:
+       theresult['l'] = "--- ---"
+       theresult['b'] = "2"
+       theresult['f'] = "2"
+    if result ==9: 
+        theresult['l'] = "---0---"
+        theresult['b'] = "1"
+        theresult['f'] = "2"
+    
     return theresult
 
+
+def future(convert):
+    thefuture=""
+    thefuture = convert.replace('x','-').replace('0',' ')
+    return thefuture
+
 # for i in range (0,6):
-    print(i)
+    # print(i)
 tossA1 = toss()
 tossA2 = toss()
 tossA3 = toss()
@@ -110,27 +129,20 @@ tossA4 = toss()
 tossA5 = toss()
 tossA6 = toss()
 
-tossB1 = toss()
-tossB2 = toss()
-tossB3 = toss()
-tossB4 = toss()
-tossB5 = toss()
-tossB6 = toss()
-
 print ('Your I Ching Hexagram Results' + '\n\n' +       
-       tossA6['l'] + ' | ' + tossB6['l'] +'\n' +
-       tossA5['l'] + ' | ' + tossB5['l'] +'\n' +
-       tossA4['l'] + ' | ' + tossB4['l'] +'\n' +
-       tossA3['l'] + ' | ' + tossB3['l'] +'\n' + 
-       tossA2['l'] + ' | ' + tossB2['l'] +'\n' +
-       tossA1['l'] + ' | ' + tossB1['l'] +'\n')
+       tossA6['l'] + ' | ' + future(tossA6['l']) +'\n' +
+       tossA5['l'] + ' | ' + future(tossA5['l']) +'\n' +
+       tossA4['l'] + ' | ' + future(tossA4['l']) +'\n' +
+       tossA3['l'] + ' | ' + future(tossA3['l']) +'\n' + 
+       tossA2['l'] + ' | ' + future(tossA2['l']) +'\n' +
+       tossA1['l'] + ' | ' + future(tossA1['l']) +'\n')
 
 sql = "SELECT hexagram,iching FROM answers WHERE binary =?"
 
 p = (tossA6['b']+tossA5['b']+tossA4['b']+tossA3['b']+tossA2['b']+tossA1['b'])
 answer1 = cursor.execute(sql,(p,)).fetchall()
 
-p = (tossB6['b']+tossB5['b']+tossB4['b']+tossB3['b']+tossB2['b']+tossB1['b'])
+p = (tossA6['f']+tossA5['f']+tossA4['f']+tossA3['f']+tossA2['f']+tossA1['f'])
 answer2 = cursor.execute(sql,(p,)).fetchall()
 
 print(answer1[0]+ answer2[0])
