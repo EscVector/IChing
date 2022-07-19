@@ -2,13 +2,20 @@
 
 # Heads is True - Value of three to any coins that are heads 
 # Tails is False - Value of two to any coins that are tails. 
+# Heads = 3
+# Tails = 2
+# 7,9 Yang - Solid Lines
+# 6,8 Yin - Broken Lines
+# 9 Converts to Broken Line for Future
+# 6 Converts to Unbroken Line for Future
+# Hexagram binary representation in 1 and 2 for excel compatibility 
+#
 
 # https://aleadeum.com/2013/07/12/the-i-ching-random-numbers-and-why-you-are-doing-it-wrong/
-
+# https://divination.com/how-to-consult-the-i-ching/
 
 import random
 import sqlite3
-from unittest import registerResult
 
 def dbsetup():
     connection = sqlite3.connect("IChing.db")
@@ -122,6 +129,7 @@ def future(convert):
     return thefuture
 
 def main():
+    input('\n'+ "Think of your question and hit enter once fully concentrated" + '\n')
     cursor=dbsetup()
 
     tossA1 = toss()
@@ -155,4 +163,5 @@ if __name__ == "__main__":
     except:
         print("Something happened, there is no future")
     finally:
-        print("Seriously, there is no future.")
+        # print('\n\n'+"Seriously, there is no future.")
+        print('\n'+ "May the force be with you.")
